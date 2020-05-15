@@ -1,0 +1,144 @@
+class Shape:
+    def __init__(self):
+        print("Constructing Shape")
+
+    def getArea(self):
+        pass
+
+class Circle(Shape):
+    def __init__(self, r):
+        print("Constrcting Circle")
+        self.__r = r
+
+    def __get(self):
+        return self.__r
+
+    def __set(self, r):
+        self.__r = r
+
+    def __radius(self):
+        self.__S = 3.14 * pow(self.__r, 2)
+        print("Circle's area:{:.2f}".format(self.__S))
+
+    r = property(__get, __set)
+
+class Rectangle(Shape):
+    def __init__(self, w, l):
+        print("Constrction Rectangle")
+        self.w = w
+        self.l = l
+
+    def __getwidth(self):
+        return self.__w
+
+    def __setwidth(self, w):
+        self.__w = w
+
+    w = property(__getwidth, __setwidth)
+
+    def __getlength(self):
+        return self.__l
+
+    def __setlength(self, l):
+        self.__l = l
+
+    l = property(__getlength, __setlength)
+
+    def __radius(self):
+        self.__S = self.__l * self.__w
+        print("Rectangle's area:{:.2f}".format(self.__S))
+
+class Ball(Circle):
+    def __init__(self, r):
+        print("Construting Ball")
+        self.__r = r
+
+    def __get(self):
+        return self.__r
+
+    def __set(self, r):
+        self.__r = r
+
+    r = property(__get, __set)
+
+    def __radius(self):
+        self.__S = 4 * 3.14 * pow(self.__r, 2)
+        print("Ball's surface area:{:.2f}".format(self.__S))
+
+    def getVolume(self):
+        self.__V = 4 * pow(self.__r, 3) / 3
+        print("Ball's volume:{:.2f}".format(self.__V))
+
+class Box(Rectangle):
+    def __init__(self, w, l, h):
+        print("Constrcting Box")
+        self.__w = w
+        self.__l = l
+        self.__h = h
+
+    def __get(self):
+        return self.__w
+
+    def __set(self, w):
+        self.__w = w
+
+    w = property(__get, __set)
+
+    def __get(self):
+        return self.__l
+
+    def __set(self, l):
+        self.__l = l
+
+    l = property(__get, __set)
+
+    def __get(self):
+        return self.__h
+
+    def __set(self, h):
+        self.__h = h
+
+    h = property(__get, __set)
+
+    def getVolume(self):
+        self.__V = self.__w * self.__l * self.__h
+        print("Box's volume:{:.2f}".format(self.__V))
+
+    @property
+    def height(self, h):
+        return self.__h
+
+    def __radius(self):
+        self.__S = 2 * (self.__w*self.__l + self.__w*self.__h + self.__l*self.__h)
+        print("Box's surface area:{:.2f}".format(self.__S))
+
+if __name__ == "__main__":
+    input_function = eval(input())
+    if input_function == 1:
+        r = eval(input())
+        if r < 0:
+            raise Exception("Wrong Format")
+        circle = Circle(r)
+        circle._Circle__radius()
+    elif input_function == 2:
+        w, l = map(float, input().split(' '))
+        if w<0 or l<0:
+            raise Exception("Wrong Format")
+        rectangle = Rectangle(w, l)
+        rectangle._Rectangle__radius()
+    elif input_function == 3:
+        r = eval(input())
+        if r < 0:
+            raise Exception("Wrong Format")
+        ball = Ball(r)
+        ball._Ball__radius()
+        ball.getVolume()
+    elif input_function == 4:
+        w, l, h = map(float, input().split(' '))
+        if w<0 or l<0 or h<0:
+            raise Exception("Wrong Format")
+        box = Box(w, l ,h)
+        box._Box__radius()
+        box.getVolume()
+    else:
+        raise Exception("Wrong Format")
