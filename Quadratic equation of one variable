@@ -1,0 +1,30 @@
+import math
+
+class Equation:
+    def __init__(self, a, b, c):
+        self.__a = a
+        self.__b = b
+        self.__c = c
+
+    def __discriminant(self):
+        self.__delta = pow(self.__b, 2) - 4 * self.__a * self.__c
+        if self.__delta < 0:
+            return False
+        else:
+            return True
+
+    def solve(self):
+        self.__x1 = (-self.__b + math.sqrt(self.__delta)) / (2 * self.__a)
+        self.__x2 = (-self.__b - math.sqrt(self.__delta)) / (2 * self.__a)
+
+if __name__ == "__main__":
+    a = eval(input())
+    b = eval(input())
+    c = eval(input())
+    equation = Equation(a, b, c)
+    if equation._Equation__discriminant():
+        equation.solve()
+        print(equation._Equation__x1)
+        print(equation._Equation__x2)
+    else:
+        print("Solution does not exist")
